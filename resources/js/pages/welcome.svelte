@@ -1,5 +1,5 @@
 <script context="module">
-    export { default as layout } from './layout.svelte'
+    export { default as layout } from './layout.svelte';
 </script>
   
   <!-- ======= Hero Section ======= -->

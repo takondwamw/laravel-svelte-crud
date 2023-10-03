@@ -1,3 +1,8 @@
+<script context="module">
+    export { default as layout } from '../layouts/layout.svelte';
+</script>  
+
+
 <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->

@@ -16,3 +16,31 @@ use Inertia\Inertia;
 Route::get('/', function () {
     return Inertia::render('welcome');
 });
+
+Route::get('/pricing',function (){
+    return Inertia::render('pricing/pricing');
+} );
+
+Route::get('/get-a-quote',function (){
+    return Inertia::render('get-a-quote/quote');
+} );
+
+Route::get('/services',function (){
+    return Inertia::render('services/services');
+} );
+
+
+Route::get('/services/show',function (){
+    return Inertia::render('services/show');
+} );
+
+Route::get('/about',function (){
+    return Inertia::render('about/about');
+} );
+// Route::get('/contact-us',function () {
+//     return Inertia::render('about/contact-us/contact');
+// });
+
+Route::get('/contact-us',function (){
+    return Inertia::render('about/contact-us/contact');
+} );
