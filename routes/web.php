@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\QuoteController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,6 +17,8 @@ use Inertia\Inertia;
 Route::get('/', function () {
     return Inertia::render('welcome');
 });
+
+Route::post('/quote',[QuoteController::class,'store']);
 
 Route::get('/pricing',function (){
     return Inertia::render('pricing/pricing');

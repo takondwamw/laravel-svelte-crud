@@ -1,5 +1,33 @@
 <script context="module">
   export { default as layout } from '../layouts/layout.svelte';
+
+</script>
+
+<script>
+
+  import { router,Link, useForm } from '@inertiajs/svelte';
+
+  let form =useForm({
+     name: null,
+     email:null,
+     phone:null,
+     depart:null,
+     delivery:null,
+     weight:null,
+     dimension:null,
+     message:null,
+  })
+
+  // export let errors;
+
+  function textChange(event){
+    $form.message = event.target.value;
+  }
+
+  function handleSubmit (){
+      return $form.post('/quote', form);
+  }
+
 </script>
 
 <main id="main">
@@ -20,7 +48,7 @@
       <nav>
         <div class="container">
           <ol>
-            <li><a href="index.html">Home</a></li>
+            <li><Link href="/">Home</Link></li>
             <li>Get a Quote</li>
           </ol>
         </div>
@@ -36,25 +64,46 @@
           <div class="col-lg-5 quote-bg" style="background-image: url(../img/quote-bg.jpg);"></div>
 
           <div class="col-lg-7">
-            <form action="forms/quote.php" method="post" class="php-email-form">
-              <h3>Get a quote</h3>
+            <form on:submit|preventDefault={handleSubmit} class="php-email-form">
+              <!-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
+              <h3>Get a quote {$form.message}</h3>
               <p>Vel nobis odio laboriosam et hic voluptatem. Inventore vitae totam. Rerum repellendus enim linead sero park flows.</p>
               <div class="row gy-4">
 
                 <div class="col-md-6">
-                  <input type="text" name="departure" class="form-control" placeholder="City of Departure" required>
+                  <input type="text" bind:value={$form.depart} name="depart" class="form-control" placeholder="City of Departure" required>
+                    {#if $form.errors.depart}
+                      <div class="text-danger">
+                        {$form.errors.depart}
+                      </div>
+                    {/if}
                 </div>
 
                 <div class="col-md-6">
-                  <input type="text" name="delivery" class="form-control" placeholder="Delivery City" required>
+                  <input type="text" bind:value={$form.delivery} name="delivery" class="form-control" placeholder="Delivery City" required>
+                    {#if $form.errors.delivery}
+                      <div class="text-danger">
+                        {$form.errors.delivery}
+                      </div>
+                    {/if}
                 </div>
 
                 <div class="col-md-6">
-                  <input type="text" name="weight" class="form-control" placeholder="Total Weight (kg)" required>
+                  <input type="text" bind:value={$form.weight} name="weight" class="form-control" placeholder="Total Weight (kg)" required>
+                    {#if $form.errors.weight}
+                      <div class="text-danger">
+                        {$form.errors.weight}
+                      </div>
+                    {/if}
                 </div>
 
                 <div class="col-md-6">
-                  <input type="text" name="dimensions" class="form-control" placeholder="Dimensions (cm)" required>
+                  <input type="text" bind:value ={$form.dimension} name="dimension" class="form-control" placeholder="Dimensions (cm)" required>
+                    {#if $form.errors.dimension}
+                      <div class="text-danger">
+                        {$form.errors.dimension}
+                      </div>
+                    {/if}
                 </div>
 
                 <div class="col-lg-12">
@@ -62,19 +111,44 @@
                 </div>
 
                 <div class="col-md-12">
-                  <input type="text" name="name" class="form-control" placeholder="Name" required>
+                  <input type="text" bind:value={$form.name} name="name" class="form-control" placeholder="Name" required>
+                      {#if $form.errors.name}
+                          <div class="text-danger">
+                            {$form.errors.name}
+                          </div>
+                      {/if}
                 </div>
 
                 <div class="col-md-12 ">
-                  <input type="email" class="form-control" name="email" placeholder="Email" required>
+                  <input type="email" bind:value={$form.email} class="form-control" name="email" placeholder="Email" required>
+                      {#if $form.errors.email}
+                        <div class="text-danger">
+                          {$form.errors.email}
+                        </div>
+                      {/if}
                 </div>
 
                 <div class="col-md-12">
-                  <input type="text" class="form-control" name="phone" placeholder="Phone" required>
+                  <input type="text" class="form-control" bind:value ={$form.phone} name="phone" placeholder="Phone" required>
+                      {#if $form.errors.phone}
+                            <div class="text-danger">
+                              {$form.errors.phone}
+                            </div>
+                      {/if}
                 </div>
 
                 <div class="col-md-12">
-                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required></textarea>
+                  <textarea  class="form-control"
+                            on:input={textChange} 
+                            name="message"
+                            rows="8"  placeholder="Message" required
+                  >
+                  </textarea>
+                      {#if $form.errors.message}
+                          <div class="text-danger">
+                              {$form.errors.message}
+                          </div>
+                      {/if}
                 </div>
 
                 <div class="col-md-12 text-center">
