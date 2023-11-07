@@ -35,7 +35,9 @@ class QuoteController extends Controller
         $auth = $request-->validated();
         $quote->create($auth);
         // dd($auth);
-        return Inertia::render('/',['message' => 'Quotation Has Been Received You will Be Assisted Accordingly !!']); 
+        return Inertia::render('/',['message' => 'Quotation Has Been Received You will Be Assisted Accordingly !!'])->withHeaders([
+            'X-Inertia' => true,
+        ]);
     }
 
     /**

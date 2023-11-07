@@ -7,6 +7,8 @@
 
   import { router,Link, useForm } from '@inertiajs/svelte';
 
+  import axios from 'axios';
+
   let form =useForm({
      name: null,
      email:null,
@@ -17,15 +19,43 @@
      dimension:null,
      message:null,
   })
-
-  // export let errors;
+let error;
 
   function textChange(event){
     $form.message = event.target.value;
   }
 
-  function handleSubmit (){
-      return $form.post('/quote', form);
+  async function handleSubmit (){
+      // // console.log($form);
+      // // const resp =  await axios.post('/quote',$form);
+       
+      //  console.log(resp.data);
+
+      // $form.post('/quote', form);
+  
+      // return $form.reset();
+
+      try {
+      // Use axios for your HTTP request
+       const response = await axios.post('/quote', form);
+      //  router.post('/quote', form);
+      //  const response = await $form.post('/quote' , form)
+
+      // Handle the response here, if needed
+      console.log(response.data);
+      // Reset the form
+      form.reset();
+    } catch (error) {
+         // Handle errors here
+        if (error.response.status === 422) {
+        // Handle validation errors, if present in the response
+             console.log(error.response.data); // Log the validation errors
+           let   errorz = Object.keys(error.response.data.errors);
+             console.log(errorz);
+        } else {
+          console.error(error);
+        }
+    }
   }
 
 </script>
