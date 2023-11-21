@@ -28,27 +28,19 @@ let error;
   async function handleSubmit (){
       // // console.log($form);
       // // const resp =  await axios.post('/quote',$form);
-       
       //  console.log(resp.data);
-
       // $form.post('/quote', form);
-  
       // return $form.reset();
-
       try {
       // Use axios for your HTTP request
        const response = await axios.post('/quote', form);
       //  router.post('/quote', form);
       //  const response = await $form.post('/quote' , form)
-
-     
       console.log(response.data);
- 
       form.reset();
     } catch (error) {
       
         if (error.response.status === 422) {
-      
              console.log(error.response.data); // Log the validation errors
            let   errorz = Object.keys(error.response.data.errors);
              console.log(errorz);
