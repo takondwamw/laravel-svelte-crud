@@ -13,10 +13,10 @@
      name: null,
      email:null,
      phone:null,
-     depart:null,
+     depature:null,
      delivery:null,
      weight:null,
-     dimension:null,
+     dimensions:null,
      message:null,
   })
 let error;
@@ -31,9 +31,16 @@ let error;
       //  console.log(resp.data);
       // $form.post('/quote', form);
       // return $form.reset();
+<<<<<<< HEAD
+      // console.log(testForm.depart.value)
+      // console.log($form);
+      // return;
+
+=======
+>>>>>>> origin/main
       try {
       // Use axios for your HTTP request
-       const response = await axios.post('/quote', form);
+       const response = await axios.post('/quote', $form);
       //  router.post('/quote', form);
       //  const response = await $form.post('/quote' , form)
       console.log(response.data);
@@ -86,17 +93,17 @@ let error;
           <div class="col-lg-5 quote-bg" style="background-image: url(../img/quote-bg.jpg);"></div>
 
           <div class="col-lg-7">
-            <form on:submit|preventDefault={handleSubmit} class="php-email-form">
+            <form on:submit|preventDefault={handleSubmit} id="testForm" class="php-email-form">
               <!-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
               <h3>Get a quote {$form.message}</h3>
               <p>Vel nobis odio laboriosam et hic voluptatem. Inventore vitae totam. Rerum repellendus enim linead sero park flows.</p>
               <div class="row gy-4">
 
                 <div class="col-md-6">
-                  <input type="text" bind:value={$form.depart} name="depart" class="form-control" placeholder="City of Departure" required>
-                    {#if $form.errors.depart}
+                  <input type="text" bind:value={$form.depature} name="depature" class="form-control" placeholder="City of Departure" required>
+                    {#if $form.errors.depature}
                       <div class="text-danger">
-                        {$form.errors.depart}
+                        {$form.errors.depature}
                       </div>
                     {/if}
                 </div>
@@ -120,10 +127,10 @@ let error;
                 </div>
 
                 <div class="col-md-6">
-                  <input type="text" bind:value ={$form.dimension} name="dimension" class="form-control" placeholder="Dimensions (cm)" required>
-                    {#if $form.errors.dimension}
+                  <input type="text" bind:value ={$form.dimensions} name="dimensions" class="form-control" placeholder="Dimensions (cm)" required>
+                    {#if $form.errors.dimensions}
                       <div class="text-danger">
-                        {$form.errors.dimension}
+                        {$form.errors.dimensions}
                       </div>
                     {/if}
                 </div>

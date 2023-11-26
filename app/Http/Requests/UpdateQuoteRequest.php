@@ -22,7 +22,14 @@ class UpdateQuoteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['required'],
+            'email' => ['required'],
+            'depature' => ['required'],
+            'delivery' => ['required'],
+            'dimensions' => ['required'],
+            'weight' => ['required'],
+            'phone' => ['required'],
+            'message' => ['required','max:250'],
         ];
     }
 }

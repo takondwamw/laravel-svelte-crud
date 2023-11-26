@@ -24,7 +24,7 @@ class StoreQuoteRequest extends FormRequest
         return [
             'name' => ['required'],
             'email' => ['required'],
-            'depart' => ['required'],
+            'depature' => ['required'],
             'delivery' => ['required'],
             'dimensions' => ['required'],
             'weight' => ['required'],

@@ -31,13 +31,17 @@ class QuoteController extends Controller
     public function store(StoreQuoteRequest $request , Quote $quote )
     {
         //
-        $this->authorize('create', Quote::class);
-        $auth = $request-->validated();
-        $quote->create($auth);
-        // dd($auth);
-        return Inertia::render('/',['message' => 'Quotation Has Been Received You will Be Assisted Accordingly !!'])->withHeaders([
-            'X-Inertia' => true,
+        // $this->authorize('create', Quote::class);
+        $data = $request->validated();
+        $quote = $quote->create($data);
+        return response([
+            'message' => 'Quotation Has Been Received You will Be Assisted Accordingly !!',
+            'quote'   => $quote,
         ]);
+        // return Inertia::render('/',['message' => 'Quotation Has Been Received You will Be Assisted Accordingly !!']);
+        // ->withHeaders([
+        //     'X-Inertia' => true,
+        // ]);
     }
 
     /**
