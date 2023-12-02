@@ -21,6 +21,8 @@
   })
 let error;
 
+let msg = "";
+
   function textChange(event){
     $form.message = event.target.value;
   }
@@ -31,20 +33,16 @@ let error;
       //  console.log(resp.data);
       // $form.post('/quote', form);
       // return $form.reset();
-<<<<<<< HEAD
-      // console.log(testForm.depart.value)
-      // console.log($form);
-      // return;
-
-=======
->>>>>>> origin/main
       try {
       // Use axios for your HTTP request
        const response = await axios.post('/quote', $form);
       //  router.post('/quote', form);
       //  const response = await $form.post('/quote' , form)
       console.log(response.data);
-      form.reset();
+      msg = response.data.message;
+
+      $form.reset();
+
     } catch (error) {
       
         if (error.response.status === 422) {
@@ -95,8 +93,11 @@ let error;
           <div class="col-lg-7">
             <form on:submit|preventDefault={handleSubmit} id="testForm" class="php-email-form">
               <!-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
-              <h3>Get a quote {$form.message}</h3>
-              <p>Vel nobis odio laboriosam et hic voluptatem. Inventore vitae totam. Rerum repellendus enim linead sero park flows.</p>
+              <h3>Get a quote </h3>
+              {#if msg !== ''}
+                <div class="alert alert-success"> {msg}</div>
+              {/if}
+              
               <div class="row gy-4">
 
                 <div class="col-md-6">

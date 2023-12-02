@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('depature');
             $table->string('delivery');
-            $table->float('weight');
-            $table->float('dimensions');
+            $table->string('weight');
+            $table->string('dimensions');
             $table->string('name');
             $table->string('email');
             $table->string('phone');
